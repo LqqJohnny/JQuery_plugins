@@ -1,0 +1,85 @@
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+
+    <title>图片裁剪</title>
+
+	<style>
+		#imgForm{
+			display: none;
+		}
+		#imgshowPot{
+			
+			display: inline-block;
+			-webkit-user-select:none;
+		   -moz-user-select:none;
+		   -ms-user-select:none;
+		   user-select:none;
+		   display: none;
+		   position: relative;
+		}
+		#imgshowPot img{
+			width:100%;
+		}
+		#imgshowPot .edit{
+			width:100px;
+			height:30px;
+			line-height:30px;
+			position: absolute;
+			top:50%;
+			left:50%;	
+			margin-left:-50px;
+			margin-top:-15px;
+			background-color: dodgerblue;
+			border-radius:4px;
+			color:#fff;		
+			text-align: center;
+		}
+		#clipImg{
+			margin-left:300px;
+			
+		}
+	</style>
+</head> 
+
+	<div class="contain">
+		 <!--提交的图片的form-->
+		<form id="imgForm" action="http://localhost:8000/upload_base64" method="post" enctype="multipart/form-data">
+	        <input type="text" class="file" name="image" >
+	    </form>
+		
+		<!--展示圖片的部分-->
+		<input type="file" id="chooseImg"  size='50'>
+		
+		<div id="imgshowPot" class=""></div>
+		
+		<div>
+			<canvas id="clipImg" width="0" height="0"></canvas>
+			<button id="submit">
+				提交
+			</button>
+		</div>
+	</div>
+
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/cropImage.js"></script>
+    <!--<script type="text/javascript" src="js/crop.js"></script>-->
+    <script type="text/javascript">
+    	$("#imgForm").cropImage({
+    		imgResult:"#clipImg",
+			chooseImgInput:"#chooseImg",
+			editImgcontainer:"#imgshowPot",
+			startEditBtn:"#startEdit",
+//			maxSize: 300,
+			loadedImg:function(){
+				
+			}
+    	});
+    
+    </script>
+</body>
+</html>
